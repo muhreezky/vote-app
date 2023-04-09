@@ -1,10 +1,10 @@
 import { zeroPad } from "react-countdown";
 interface ItemProps {
     value: number;
-    Label: string;
+    label: string;
 }
 
-export default function CountDownItem =(props: ItemProps){
+export default function CountDownItem (props: ItemProps){
     return (
     <div className="flex item-center">
         <div className="flex flex-col text-center">

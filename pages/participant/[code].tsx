@@ -4,6 +4,7 @@ import Menu from "../../components/Menu";
 import Button from "../../components/Button";
 import CandidateItem from "../../components/CandidateItem";
 import CountDownItem from "../../components/CountDown/CountDownItem";
+import CountDown from "../../components/CountDown/CountDown";
 import { showAlert } from "../../components/CountDown/Alert";
 
 
@@ -38,9 +39,9 @@ export default function DetailParticipant() {
 
                 {/* <Submit> */}
                 <div className="text-center mt-10">
-                    <Button type="primary" text="Kirim Vote Saya" onClick={() => 
+                    <Button style="primary" text="Kirim Vote Saya" onclick={() => 
                     showAlert({
-                        title: "Yeay!"
+                        title: "Yeay!",
                         message: "Kamu berhasil melakukan vote!"
                     })}/>
                 </div>

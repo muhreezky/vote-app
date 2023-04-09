@@ -1,8 +1,8 @@
 import Head from 'next/head';
 import Image from 'next/image';
 import Menu from '../../components/Menu';
-import Form from '../../components/Form';
-import ReactDataPicker, { registerLocale } from 'react-datepicker';
+import Input from '../../components/Input';
+import ReactDatePicker, { registerLocale } from 'react-datepicker';
 import id from "date-fns/locale/id";
 import { useState } from 'react';
 registerLocale("id", id);
@@ -10,11 +10,12 @@ import "react-datepicker/dist/react-datepicker.css";
 import CandidateForm from '../../components/CandidateForm';
 import { PlusIcon } from '@heroicons/react/24/solid';
 import Button from '../../components/Button';
+import { useFormik } from "formik";
 
 
 export default function CreateVote() {
-    const [startDate, setStartDate] = useState(new Date());
-    const [endDate, SetEndDate] = useState(new Date())
+    const [startDate, setStartDate] = useState<Date>(new Date());
+    const [endDate, setEndDate] = useState<Date>(new Date())
 
     const [candidates, setCandidates] = useState<Candidate[]>([]);
 
@@ -54,18 +55,12 @@ export default function CreateVote() {
     return (
     <div className="container mx-auto">
         <Head>
-            <title>Voting baru</title>
+            <title>Buat Program Votingan Baru</title>
         </Head>
 
         <Menu/>
 
         <div className='py-10'>
-            <Image
-            alt="Create Vote"
-            src={"/assets/fotos.svg"}
-            width={284}
-            height={198}
-            />
             <h1 className='text-4xl font-bold'>Buat Voting Baru</h1>
             <h2 className='text-zinc-700 mt-3'>
                 Silahkan masukan data yang dibutuhkan sebelum membuat vote online
@@ -78,10 +73,9 @@ export default function CreateVote() {
                     <div className='flex flex-col'>
                         <label className='text-sm mt-5'>Judul</label>
 
-                        <Form
+                        <Input
                             onChange={() => {}}
-                            value={""}
-                            placherHolder={"Contoh : Voting Calon Gubernur"}
+                            placeHolder={"Contoh : Voting Calon Gubernur"}
                             className={"mt-01 w-1/2"}
                         />
                     </div>
@@ -89,7 +83,7 @@ export default function CreateVote() {
                     <div className='flex flex-col w-2/3'>
                         <label className='text-sm'>Kapan dimulai?</label>
                         <div className='inline-flex'>
-                            <ReactDataPicker
+                            <ReactDatePicker
                             locale={"id"}
                             showTimeSelect
                             selected={startDate}
@@ -100,11 +94,11 @@ export default function CreateVote() {
                             />
 
                             <span className='text-sm text-center p-3'>Sampai</span>
-                            <ReactDataPicker
+                            <ReactDatePicker
                                 locale={"id"}
                                 showTimeSelect
                                 selected={endDate}
-                                onChange={(date) => date && SetEndDate(date)}
+                                onChange={(date) => date && setEndDate(date)}
                                 dateFormat={"Pp"}
                                 minDate={startDate}
                                 className={"w-full bg-zinc-100 py-2 px-3"}
@@ -117,9 +111,9 @@ export default function CreateVote() {
                 </div>
                 {/* </DetailVote> */}
 
-                {/* <K andidat> */}
+                {/* <Kandidat> */}
                 <h3 className='font-medium text-xl mt-10'>Kandidat</h3>
-                <div className='grid gap-4 grid-cols-4 mt-5'>
+                <div className='grid gap-4 grid-cols-4 mt-5 mb-8'>
                     {candidates.map((candidate:Candidate, index: number) => (
                         <CandidateForm
                         key={index}
@@ -137,9 +131,7 @@ export default function CreateVote() {
                 {/* </Kandidat> */}
 
 
-                <div className='text-right px-10 py-3'>
-                    <Button type="primary" text="Buat Voting" />
-                </div>
+                <Button style="primary" className="w-100" text="Buat Voting" />
                 {/* {JSON.stringify(candidates)} */}
             </form>
         </div>

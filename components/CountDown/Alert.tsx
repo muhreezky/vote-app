@@ -11,8 +11,9 @@ interface Props {
     negativeBtnText?:string;
     onPositiveClick?:()=> void;
     onNegativeClick?:()=> void;
+}
 
-function Alert(props: Props) {
+export default function Alert(props: Props) {
     const [isOpen, setIsOpen] = useState(props.isOpen);
 
     return <div className={`relative z-10 ${!isOpen && "hidden"}`}
@@ -34,7 +35,7 @@ function Alert(props: Props) {
                             onClick={()=>{props.onNegativeClick;setIsOpen(false)}}>
                             {props.positiveBtnText || "Kembali"}
                             </button>
-                            <Button className={`${!props.onPositiveClick &&"hidden"}`} 
+                            <Button style="primary" className={`${!props.onPositiveClick &&"hidden"}`} 
                             onclick={()=>{
                                 props.onPositiveClick && props.onPositiveClick(); 
                                 setIsOpen(false);
@@ -53,14 +54,16 @@ export function showAlert(props:Props){
     const alert=document.createElement("div")
     alert.id="alert"
     document.body.appendChild(alert)
-    const root=createRoot(alert)
+    const root = createRoot(alert)
     root.render(
-    <Alert 
-    isOpen={true} 
-    title={props.title} 
-    message={props.message} 
-    positiveBtnText={props.positiveBtnText} 
-    negativeBtnText={props.negativeBtnText} 
-    onNegativeClick={props.onNegativeClick} 
-    onPositiveClick={props.onPositiveClick})
+        <Alert 
+            isOpen={true} 
+            title={props.title} 
+            message={props.message} 
+            positiveBtnText={props.positiveBtnText} 
+            negativeBtnText={props.negativeBtnText} 
+            onNegativeClick={props.onNegativeClick} 
+            onPositiveClick={props.onPositiveClick} 
+        />
+    )
 }

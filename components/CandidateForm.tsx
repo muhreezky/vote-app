@@ -1,6 +1,6 @@
 
 import { useEffect, useState } from "react";
-import Form from "./Form"
+import Input from "./Input"
 import { XCircleIcon } from "@heroicons/react/24/solid";
 
 interface Props {
@@ -35,8 +35,8 @@ export default function CandidateForm(props: Props) {
                 {props.candidate.key}
             </h1>
                 <label className="text-sm mt-3 mb-1">Nama Kandidat</label>
-                <Form
-                placherHolder="Masukan Nama Kandidat"
+                <Input
+                placeHolder="Masukan Nama Kandidat"
                 value={candidate.name}
                 onChange={(e)=>{
                     setCandidate({...candidate, name: e})

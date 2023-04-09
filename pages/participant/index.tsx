@@ -2,7 +2,7 @@ import Head from "next/head"
 import Image from "next/image"
 import Button from '../../components/Button'
 import Menu from '../../components/Menu'
-import Form from '../../components/Form'
+import Input from '../../components/Input'
 import { useRouter } from "next/router"
 import { useState } from "react"
 
@@ -34,14 +34,13 @@ export default function Participant() {
                 Untuk Ikutan Voting, kamu harus memasukan kode voting yang
                 sudah diberikan panitia/penyelnggara
             </h2>
-            <Form
-            value={code}
+            <Input
             onChange={setCode}
-            placherHolder="Masukan Kode Voting"
+            placeHolder="Masukan Kode Voting"
             className="w-1/3 mt-3" />
 
 
-            <Button type="primary" onclick={handleSubmit} text="Lanjutkan" className="w-1/3" />
+            <Button style="primary" onclick={handleSubmit} text="Lanjutkan" className="w-1/3" />
             {/* <button className="text-sm" onclick={() => router.push("/")}>
                 Kembali
             </button> */}
